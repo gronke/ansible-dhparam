@@ -1,0 +1,8 @@
+---
+
+- name: OpenSSL is installed via Aptitude
+  apt:
+    name: openssl
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600

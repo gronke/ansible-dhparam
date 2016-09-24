@@ -1,0 +1,30 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Stefan Grönke
+  description: Generates Diffie-Hellman Parameters (dhparam)
+  company: gronke.org
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: FreeBSD
+      versions:
+        - 9.3
+        - 10.1
+        - 10.2
+        - 10.3
+    - name: Debian
+      versions:
+        - jessie
+        - wheezy
+        - squeeze
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+  galaxy_tags:
+    - crypto
+    - encryption
+    - ssl
+    - security

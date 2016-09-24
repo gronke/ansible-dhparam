@@ -1,0 +1,6 @@
+---
+
+- name: Packages are installed via PKG
+  pkgng:
+    name: openssl
+    state: present

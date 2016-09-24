@@ -1,0 +1,15 @@
+---
+
+- include: install.yml
+
+- name: The directory for Diffie-Hellman parameters exists
+  file:
+    path: "{{ dhparam_file | dirname }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: The Diffie-Hellman parameter file is generated
+  shell: /usr/bin/openssl dhparam -out "{{ dhparam_file }}" {{ dhparam_size }}
+  creates: "{{ dhparam_file }}"
