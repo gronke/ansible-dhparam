@@ -2,3 +2,8 @@
 
 dhparam_size: 4096
 dhparam_file: "/etc/ssl/certs/dhparam-{{ dhparams_size }}"
+
+# Use a cronjob to update DH params regularly
+dhparam_update_enabled: false
+# (daily, weekly, monthly, annually)
+dhparam_update_interval: weekly

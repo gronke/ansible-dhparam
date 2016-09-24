@@ -1,0 +1,11 @@
+---
+
+- set_fact:
+    _cronjob_name: "{{ dhparam_file | hash('sha1') }}"
+
+- name: Cron Job is configured to update the DH params weekly
+  cron:
+    name: "{{ _cronjob_name }}"
+    job: "/usr/bin/openssl dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+    state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
+    special_time: "{{ dhparam_update_interval }}"
