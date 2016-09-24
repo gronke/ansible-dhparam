@@ -1,7 +1,7 @@
 ---
 
 - set_fact:
-    _cronjob_name: "{{ dhparam_file | hash('sha1') }}"
+    _cronjob_name: "dhparam_{{ dhparam_file | hash('sha1') }}"
 
 - name: Cron Job is configured to update the DH params weekly
   cron:
