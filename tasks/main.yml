@@ -2,16 +2,24 @@
 
 - include: install.yml
 
+- name: Find path to the openssl binary
+  command: which openssl
+  changed_when: false
+  register: which_openssl_output
+
+- name: Register fact containing path to openssl binary
+  set_fact:
+    dhparam_openssl_binary: "{{which_openssl_output.stdout_lines[0]}}"
+  no_log: true
+
 - name: Output directory for Diffie-Hellman parameters exists
   file:
     path: "{{ dhparam_file | dirname }}"
     state: directory
-    owner: root
-    group: root
-    mode: 0755
 
 - name: The Diffie-Hellman parameter file is generated
-  shell: /usr/bin/openssl dhparam -out "{{ dhparam_file }}" {{ dhparam_size }}
-  creates: "{{ dhparam_file }}"
+  command: "{{dhparam_openssl_binary}} -out '{{ dhparam_file }}' {{ dhparam_size }}"
+  args:
+    creates: "{{ dhparam_file }}"
 
 - include: cron.yml
