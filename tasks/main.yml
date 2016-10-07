@@ -18,7 +18,7 @@
     state: directory
 
 - name: The Diffie-Hellman parameter file is generated
-  command: "{{dhparam_openssl_binary}} -out '{{ dhparam_file }}' {{ dhparam_size }}"
+  command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
 
