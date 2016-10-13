@@ -9,3 +9,4 @@
     job: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
     state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
     special_time: "{{ dhparam_update_interval }}"
+    when: dhparam_update_enabled
