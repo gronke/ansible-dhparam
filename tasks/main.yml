@@ -12,10 +12,10 @@
     dhparam_openssl_binary: "{{which_openssl_output.stdout_lines[0]}}"
   no_log: true
 
-- name: Output directory for Diffie-Hellman parameters exists
-  file:
-    path: "{{ dhparam_file | dirname }}"
-    state: directory
+#- name: Output directory for Diffie-Hellman parameters exists
+#  file:
+#    path: "{{ dhparam_file | dirname }}"
+#    state: directory
 
 - name: The Diffie-Hellman parameter file is generated
   command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
