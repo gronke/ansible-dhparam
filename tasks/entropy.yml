@@ -1,0 +1,21 @@
+---
+
+  - name: Install rng toolkit
+    yum: name=rng-tools state=present
+    when: ansible_os_family == "RedHat"
+
+  - name: Modify rngd configuration to point to /dev/urandom
+    template: src=etc/sysconfig/rngd.j2 dest=/etc/sysconfig/rngd owner=root group=root mode=0640
+    when: ansible_os_family == "RedHat"
+
+  - name: Start the rngd service
+    service: name=rngd enabled=yes state=restarted
+    when: ansible_os_family == "RedHat"
+
+  - name: Install haveged daemon
+    apt: name=haveged state=present
+    when: (ansible_distribution == 'Debian') or (ansible_distribution == 'Ubuntu')
+
+  - name: Start the haveged service
+    service: name=haveged enabled=yes state=restarted
+    when: (ansible_distribution == 'Debian') or (ansible_distribution == 'Ubuntu')
