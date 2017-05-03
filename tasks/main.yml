@@ -12,15 +12,15 @@
     dhparam_openssl_binary: "{{which_openssl_output.stdout_lines[0]}}"
   no_log: true
 
-- name: The Diffie-Hellman parameter file is generated
-  command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
-  args:
-    creates: "{{ dhparam_file }}"
-
 - include: entropy.yml
   when: dhparam_entropy_service
   tags:
     - setup-entropy
     - entropy-service
+
+- name: The Diffie-Hellman parameter file is generated
+  command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+  args:
+    creates: "{{ dhparam_file }}"
 
 - include: cron.yml
