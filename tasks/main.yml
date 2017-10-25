@@ -11,6 +11,7 @@
   set_fact:
     dhparam_openssl_binary: "{{which_openssl_output.stdout_lines[0]}}"
   no_log: true
+  check_mode: no
 
 - name: Output directory for Diffie-Hellman parameters exists
   file:
