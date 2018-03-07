@@ -14,6 +14,7 @@ Role Variables
 | dhparam_file            | no       | `/etc/ssl/certs/dhparam-{{dhparam_size}}.pem` |
 | dhparam_update_enabled  | no       | false                                         |
 | dhparam_update_interval | no       | `weekly`                                      |
+| dhparam_use_dsaparam    | no       | false                                         |   
 
 Examples
 --------
@@ -30,6 +31,14 @@ Examples
 - role: gronke.dhparam
   dhparam_update_enabled: true
 ```
+
+### Generate dhparams using dsaparam with auto-update cronjob
+```yaml
+- role: gronke.dhparam
+  dhparam_update_enabled: true
+  dhparam_use_dsaparam: true
+```
+
 
 References
 ----------
