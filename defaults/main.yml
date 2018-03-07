@@ -1,9 +1,12 @@
 ---
 
 dhparam_size: 4096
-dhparam_file: "/etc/ssl/dhparam-{{ dhparam_size }}.pem"
+dhparam_file: "/etc/ssl/dhparam.pem"
 
 # Use a cronjob to update DH params regularly
 dhparam_update_enabled: false
 # (daily, weekly, monthly, annually)
 dhparam_update_interval: weekly
+
+# Speed up generation using dsaparam
+dhparam_use_dsaparam: false

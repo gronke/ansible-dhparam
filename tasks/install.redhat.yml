@@ -1,0 +1,8 @@
+---
+
+- name: OpenSSL is installed via yum
+  yum:
+    name: '{{ item }}'
+  with_items:
+    - openssl
+    - which

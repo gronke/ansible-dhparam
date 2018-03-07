@@ -23,6 +23,10 @@ galaxy_info:
       versions:
         - precise
         - trusty
+    - name: EL
+      versions:
+        - 7
+        - 6
   galaxy_tags:
     - crypto
     - encryption
