@@ -4,6 +4,7 @@ Ansible Role: Diffie-Hellman Parameters
 Uses OpenSSL to generate strong Diffie-Hellman parameters.
 
 Depending on the system and key size generating this keys can take a very long time.
+To speedup key generate use `dhparam_use_dsaparam`.
 
 Role Variables
 --------------
