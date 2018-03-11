@@ -1,6 +1,6 @@
 ---
 
-- import_tasks: install.yml
+- include_tasks: install.yml
 
 - name: Find path to the openssl binary
   command: which openssl
@@ -20,6 +20,7 @@
 
 - debug:
     msg: 'dsaparam {{ dhparam_use_dsaparam }} {{ dhparam_file}}'
+    verbosity: 3
 
 - name: The Diffie-Hellman parameter file is generated
   command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
@@ -33,5 +34,5 @@
     creates: "{{ dhparam_file }}"
   when: dhparam_use_dsaparam
 
-- import_tasks: cron.yml
+- include_tasks: cron.yml
   when: not ansible_check_mode
