@@ -1,0 +1,25 @@
+---
+sudo: required
+language: python
+services:
+  - docker
+env:
+  - distro: centos7
+    playbook: test.yml
+
+install:
+  - pip install molecule
+  - pip install docker
+  - pip install docker-py
+
+branches:
+  only:
+    - master
+
+script:
+
+  # Run tests
+  - molecule test
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
