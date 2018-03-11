@@ -1,13 +1,13 @@
 ---
 
 dhparam_size: 4096
-#dhparam_file: "/etc/ssl/dhparam-{{ dhparams_size }}.pem"
+# dhparam_file: "/etc/ssl/dhparam-{{ dhparams_size }}.pem"
 # The above line throws error: he task includes an option with an undefined
 # variable. The error was: /etc/ssl/dhparam-{{ dhparams_size }}.pem:
 # 'dhparams_size' is undefined\n\nThe error appears to have been in
 # in Ansible ansible 2.4.3.0
 
-dhparam_file: "/etc/ssl/dhparam-4096.pem"
+dhparam_file: "/etc/ssl/private/dhparam.pem"
 
 # Use a cronjob to update DH params regularly
 dhparam_update_enabled: false
