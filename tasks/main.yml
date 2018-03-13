@@ -11,6 +11,7 @@
   set_fact:
     dhparam_openssl_binary: "{{which_openssl_output.stdout_lines[0]}}"
   no_log: true
+  when: not ansible_check_mode
 
 - name: Output directory for Diffie-Hellman parameters exists
   file:
@@ -21,5 +22,7 @@
   command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
+  when: not ansible_check_mode
 
 - include: cron.yml
+  when: not ansible_check_mode
