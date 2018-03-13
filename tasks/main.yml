@@ -22,5 +22,7 @@
   command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
+  when: not ansible_check_mode
 
 - include: cron.yml
+  when: not ansible_check_mode
