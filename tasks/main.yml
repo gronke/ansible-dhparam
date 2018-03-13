@@ -1,6 +1,6 @@
 ---
 
-- include: install.yml
+- include_tasks: install.yml
 
 - name: Find path to the openssl binary
   command: which openssl
@@ -17,9 +17,20 @@
     path: "{{ dhparam_file | dirname }}"
     state: directory
 
+- debug:
+    msg: 'dsaparam {{ dhparam_use_dsaparam }} {{ dhparam_file}}'
+    verbosity: 3
+
 - name: The Diffie-Hellman parameter file is generated
   command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
+  when: dhparam_use_dsaparam == False
 
-- include: cron.yml
+- name: The Diffie-Hellman parameter file is generated using dsaparam
+  command: "{{dhparam_openssl_binary}} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+  args:
+    creates: "{{ dhparam_file }}"
+  when: dhparam_use_dsaparam
+
+- include_tasks: cron.yml

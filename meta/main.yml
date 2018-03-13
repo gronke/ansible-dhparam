@@ -2,11 +2,11 @@
 dependencies: []
 
 galaxy_info:
-  author: Stefan Grönke
+  author: Sudheer Satyanarayana (Original author Stefan Grönke)
   description: Generates Diffie-Hellman Parameters (dhparam)
-  company: gronke.org
+  company: techchorus.net
   license: MIT
-  min_ansible_version: 1.9
+  min_ansible_version: 2.2
   platforms:
     - name: FreeBSD
       versions:
@@ -23,6 +23,10 @@ galaxy_info:
       versions:
         - precise
         - trusty
+    - name: EL
+      versions:
+        - 7
+        - 6
   galaxy_tags:
     - crypto
     - encryption
