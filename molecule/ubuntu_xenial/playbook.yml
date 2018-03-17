@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    - dhparam_use_dsaparam: true
+    - dhparam_update_enabled: true
+  roles:
+    - role: ansible-dhparam

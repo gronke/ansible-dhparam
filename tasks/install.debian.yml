@@ -1,5 +1,7 @@
 ---
-
-- name: OpenSSL is installed via Aptitude
+- name: Install cron and openssl
   apt:
-    name: openssl
+    name: '{{ item }}'
+  with_items:
+    - openssl
+    - cron
