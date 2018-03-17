@@ -16,7 +16,8 @@ branches:
 script:
 
   # Run tests
-  - molecule test
+  - molecule test --scenario-name=default
+  - molecule test --scenario-name=ubuntu_xenial
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
