@@ -1,7 +1,7 @@
 ---
 
-- include: install.freebsd.yml
+- import_tasks: install.freebsd.yml
   when: ansible_distribution == 'FreeBSD'
 
-- include: install.debian.yml
+- import_tasks: install.debian.yml
   when: (ansible_distribution == 'Debian') or (ansible_distribution == 'Ubuntu')
