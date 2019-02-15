@@ -1,6 +1,6 @@
 ---
 
-- include: install.yml
+- import_tasks: install.yml
 
 - name: Find path to the openssl binary
   command: which openssl
@@ -24,5 +24,5 @@
     creates: "{{ dhparam_file }}"
   when: not ansible_check_mode
 
-- include: cron.yml
+- import_tasks: cron.yml
   when: not ansible_check_mode
