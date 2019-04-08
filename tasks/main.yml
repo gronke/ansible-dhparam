@@ -13,13 +13,14 @@
   no_log: true
   check_mode: no
 
-- name: Output directory for Diffie-Hellman parameters exists
-  file:
-    path: "{{ dhparam_file | dirname }}"
-    state: directory
+- include: entropy.yml
+  when: dhparam_entropy_service
+  tags:
+    - setup-entropy
+    - entropy-service
 
 - name: The Diffie-Hellman parameter file is generated
-  command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+  command: "{{dhparam_openssl_binary}} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
   when: not ansible_check_mode
