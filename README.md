@@ -1,6 +1,8 @@
 Ansible Role: Diffie-Hellman Parameters
 =======================================
 
+[![Build Status](https://travis-ci.org/groke/ansible-dhparam.svg?branch=master)](https://travis-ci.org/groke/ansible-dhparam)
+
 Uses OpenSSL to generate strong Diffie-Hellman parameters.
 
 Depending on the system and key size generating this keys can take a very long time.

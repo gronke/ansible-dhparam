@@ -1,0 +1,7 @@
+---
+- hosts: all
+  roles:
+    - role_under_test
+  vars:
+    dhparam_size: 1024
+    dhparam_file: /etc/ssl/dhparam.pem

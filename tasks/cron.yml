@@ -4,6 +4,7 @@
     _cronjob_name: "dhparam_{{ dhparam_file | hash('sha1') }}"
 
 - name: Cron Job is configured to update the DH params weekly
+  become: true
   cron:
     name: "{{ _cronjob_name }}"
     job: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
