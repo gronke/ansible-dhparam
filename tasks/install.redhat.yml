@@ -1,0 +1,6 @@
+---
+- name: OpenSSL is installed via yum
+  yum:
+    name:
+      - openssl
+      - which

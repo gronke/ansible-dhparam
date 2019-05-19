@@ -1,6 +1,7 @@
 ---
 
-- set_fact:
+- name: Set fact for crontab
+  set_fact:
     _cronjob_name: "dhparam_{{ dhparam_file | hash('sha1') }}"
 
 - name: Cron Job is configured to update the DH params weekly
@@ -9,3 +10,12 @@
     job: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
     state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
     special_time: "{{ dhparam_update_interval }}"
+  when: dhparam_use_dsaparam == False
+
+- name: Cron Job is configured to update the DH params weekly using dsaparam
+  cron:
+    name: "{{ _cronjob_name }}"
+    job: "{{dhparam_openssl_binary}} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+    state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
+    special_time: "{{ dhparam_update_interval }}"
+  when: dhparam_use_dsaparam

@@ -1,8 +1,7 @@
 ---
-
-- name: OpenSSL is installed via Aptitude
+- name: Install cron and openssl
   apt:
-    name: openssl
-    state: latest
-    update_cache: yes
-    cache_valid_time: 3600
+    name: '{{ item }}'
+  with_items:
+    - openssl
+    - cron

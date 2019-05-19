@@ -1,0 +1,23 @@
+---
+sudo: required
+language: python
+services:
+  - docker
+
+install:
+  - pip install molecule
+  - pip install docker
+  - pip install docker-py
+
+branches:
+  only:
+    - master
+
+script:
+
+  # Run tests
+  - molecule test --scenario-name=default
+  - molecule test --scenario-name=ubuntu_xenial
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

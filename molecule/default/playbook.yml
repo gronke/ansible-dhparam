@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    - dhparam_use_dsaparam: true
+    - dhparam_update_enabled: true
+  pre_tasks:
+    - name: install crontab
+      yum:
+        name: crontabs
+  roles:
+    - role: ansible-dhparam

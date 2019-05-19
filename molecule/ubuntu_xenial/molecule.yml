@@ -1,0 +1,26 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: instance
+    image: solita/ubuntu-systemd:16.04
+    privileged: True
+    capabilities:
+      - SYS_ADMIN
+    volume_mounts:
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+    command: "/sbin/init"
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: ubuntu_xenial
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

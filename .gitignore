@@ -1,0 +1,6 @@
+*.retry
+molecule/**/.molecule/
+*.pyc
+molecule/**/.pytest_cache
+molecule/**/.molecule/
+*.log
