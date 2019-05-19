@@ -7,15 +7,15 @@
 - name: Cron Job is configured to update the DH params weekly
   cron:
     name: "{{ _cronjob_name }}"
-    job: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+    job: "{{ dhparam_openssl_binary }} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
     state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
     special_time: "{{ dhparam_update_interval }}"
-  when: dhparam_use_dsaparam == False
+  when: not dhparam_use_dsaparam
 
 - name: Cron Job is configured to update the DH params weekly using dsaparam
   cron:
     name: "{{ _cronjob_name }}"
-    job: "{{dhparam_openssl_binary}} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+    job: "{{ dhparam_openssl_binary }} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
     state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
     special_time: "{{ dhparam_update_interval }}"
   when: dhparam_use_dsaparam

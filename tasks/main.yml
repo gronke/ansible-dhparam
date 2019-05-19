@@ -9,7 +9,7 @@
 
 - name: Register fact containing path to openssl binary
   set_fact:
-    dhparam_openssl_binary: "{{which_openssl_output.stdout_lines[0]}}"
+    dhparam_openssl_binary: "{{ which_openssl_output.stdout_lines[0] }}"
   no_log: true
 
 - name: Output directory for Diffie-Hellman parameters exists
@@ -18,17 +18,17 @@
     state: directory
 
 - debug:
-    msg: 'dsaparam {{ dhparam_use_dsaparam }} {{ dhparam_file}}'
+    msg: 'dsaparam {{ dhparam_use_dsaparam }} {{ dhparam_file }}'
     verbosity: 3
 
 - name: The Diffie-Hellman parameter file is generated
-  command: "{{dhparam_openssl_binary}} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+  command: "{{ dhparam_openssl_binary }} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
-  when: dhparam_use_dsaparam == False
+  when: not dhparam_use_dsaparam
 
 - name: The Diffie-Hellman parameter file is generated using dsaparam
-  command: "{{dhparam_openssl_binary}} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
+  command: "{{ dhparam_openssl_binary }} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
   when: dhparam_use_dsaparam
