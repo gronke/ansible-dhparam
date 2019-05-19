@@ -1,5 +1,4 @@
 ---
-
 - name: Set fact for crontab
   set_fact:
     _cronjob_name: "dhparam_{{ dhparam_file | hash('sha1') }}"
