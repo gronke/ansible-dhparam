@@ -22,19 +22,19 @@ Examples
 
 ### Generate dhparams with 2048 bit once
 ```yaml
-- role: bngsudheer.dhparam
+- role: gronke.dhparam
   dhparam_size: 2048
 ```
 
 ### Generate dhparams with auto-update cronjob
 ```yaml
-- role: bngsudheer.dhparam
+- role: gronke.dhparam
   dhparam_update_enabled: true
 ```
 
 ### Generate dhparams using dsaparam with auto-update cronjob
 ```yaml
-- role: bngsudheer.dhparam
+- role: gronke.dhparam
   dhparam_update_enabled: true
   dhparam_use_dsaparam: true
 ```
