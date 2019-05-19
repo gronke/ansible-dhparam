@@ -7,7 +7,6 @@ services:
 install:
   - pip install molecule
   - pip install docker
-  - pip install docker-py
 
 branches:
   only:
