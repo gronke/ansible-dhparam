@@ -5,8 +5,10 @@ services:
   - docker
 
 install:
-  - pip install molecule
+  # - pip install molecule # Workardound for Molecule/Ansible 2.8 issue
   - pip install docker
+  - pip install molecule==2.19 ansible==2.7.11
+
 
 branches:
   only:
