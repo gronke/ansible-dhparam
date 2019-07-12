@@ -17,20 +17,16 @@
     path: "{{ dhparam_file | dirname }}"
     state: directory
 
-- debug:
-    msg: 'dsaparam {{ dhparam_use_dsaparam }} {{ dhparam_file }}'
-    verbosity: 3
-
 - name: The Diffie-Hellman parameter file is generated
   command: "{{ dhparam_openssl_binary }} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
-  when: not dhparam_use_dsaparam
+  when: not dhparam_use_dsaparam|bool
 
 - name: The Diffie-Hellman parameter file is generated using dsaparam
   command: "{{ dhparam_openssl_binary }} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
   args:
     creates: "{{ dhparam_file }}"
-  when: dhparam_use_dsaparam
+  when: dhparam_use_dsaparam|bool
 
 - include_tasks: cron.yml

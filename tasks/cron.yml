@@ -9,7 +9,7 @@
     job: "{{ dhparam_openssl_binary }} dhparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
     state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
     special_time: "{{ dhparam_update_interval }}"
-  when: not dhparam_use_dsaparam
+  when: not dhparam_use_dsaparam|bool
 
 - name: Cron Job is configured to update the DH params weekly using dsaparam
   cron:
@@ -17,4 +17,4 @@
     job: "{{ dhparam_openssl_binary }} dhparam -dsaparam -out '{{ dhparam_file }}' {{ dhparam_size }}"
     state: "{{ 'present' if dhparam_update_enabled else 'absent' }}"
     special_time: "{{ dhparam_update_interval }}"
-  when: dhparam_use_dsaparam
+  when: dhparam_use_dsaparam|bool
