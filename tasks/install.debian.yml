@@ -1,7 +1,6 @@
 ---
 - name: Install cron and openssl
   apt:
-    name: '{{ item }}'
-  with_items:
-    - openssl
-    - cron
+    name:
+      - openssl
+      - cron
